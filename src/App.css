@@ -1,38 +1,105 @@
+/* Global app styles */
 .App {
   text-align: center;
-}
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
-}
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
-  }
-}
-
-.App-header {
-  background-color: #282c34;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background: #f4f9ff;
   min-height: 100vh;
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
+  padding: 2rem;
+  color: #333;
 }
 
-.App-link {
-  color: #61dafb;
+/* Animated Logo - rotate + scale */
+.App-logo {
+  height: 80px;
+  pointer-events: none;
+  animation: rotateScale 6s ease-in-out infinite;
+  margin-bottom: 2rem;
 }
 
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
+/* Fade-in + slide-up animation */
+.fade-slide-up {
+  animation: fadeSlideUp 1s ease forwards;
+  opacity: 0;
+  transform: translateY(20px);
+}
+
+/* Pulse animation - for buttons or highlights */
+.pulse {
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+/* Color-changing glow - for headings or logos */
+.glow {
+  animation: colorGlow 3s ease-in-out infinite alternate;
+  color: #5DADE2;
+  text-shadow: 0 0 10px #5DADE2;
+}
+
+/* Animations keyframes */
+@keyframes rotateScale {
+  0% {
+    transform: rotate(0deg) scale(1);
   }
+  50% {
+    transform: rotate(15deg) scale(1.1);
+  }
+  100% {
+    transform: rotate(0deg) scale(1);
+  }
+}
+
+@keyframes fadeSlideUp {
   to {
-    transform: rotate(360deg);
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes pulseGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px 2px rgba(93, 173, 226, 0.7);
+    transform: scale(1);
+  }
+  50% {
+    box-shadow: 0 0 15px 5px rgba(93, 173, 226, 1);
+    transform: scale(1.05);
+  }
+}
+
+@keyframes colorGlow {
+  0% {
+    color: #5DADE2;
+    text-shadow: 0 0 5px #5DADE2;
+  }
+  100% {
+    color: #2E86C1;
+    text-shadow: 0 0 20px #2E86C1;
+  }
+}
+
+/* Example button styling with pulse animation */
+.button-pulse {
+  background-color: #5DADE2;
+  border: none;
+  border-radius: 8px;
+  padding: 0.75rem 1.5rem;
+  font-size: 1.1rem;
+  color: white;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  animation: pulseGlow 2.5s ease-in-out infinite;
+}
+
+.button-pulse:hover {
+  background-color: #2E86C1;
+}
+
+/* Responsive tweaks */
+@media (max-width: 600px) {
+  .App {
+    padding: 1rem;
+  }
+  .App-logo {
+    height: 60px;
   }
 }

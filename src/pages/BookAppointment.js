@@ -1,7 +1,10 @@
 import { useState } from 'react';
 import axios from 'axios';
 import { doctorList } from './Doctors';
-import appoiment from '../assets/OIP.jpg'; // adjust path if needed
+import { motion } from 'framer-motion';
+import stethoscope from '../assets/stethoscope4.png';
+import heart from '../assets/heart2.png';
+import syringe from '../assets/syringe2.png';
 
 function BookAppointment() {
   const [appointmentDate, setAppointmentDate] = useState('');
@@ -41,8 +44,6 @@ function BookAppointment() {
     try {
       const response = await axios.post('http://localhost:5000/api/appointments/book', formData);
       alert(response.data.message);
-
-      // Reset form
       setFullName('');
       setAge('');
       setMobile('');
@@ -60,30 +61,46 @@ function BookAppointment() {
   };
 
   return (
-    <div style={{ 
-      backgroundImage: `url(${appoiment})`,
-      backgroundSize: 'cover',
-      backgroundPosition: 'center',
-      minHeight: '100vh',
-      padding: '2rem'
-    }}>
-      <div style={{
-        backgroundColor: 'rgba(255, 255, 255, 0.9)',
-        maxWidth: '700px',
-        margin: 'auto',
-        borderRadius: '10px',
-        padding: '2rem',
-        boxShadow: '0 0 10px rgba(0,0,0,0.2)'
-      }}>
-        <h2 style={{ color: '#5DADE2', textAlign: 'center' }}>Book Your Appointment</h2>
+    <motion.div
+      initial={{ opacity: 0, y: 50 }}
+      animate={{ opacity: 1, y: 0 }}
+      transition={{ duration: 0.6 }}
+      style={styles.wrapper}
+    >
+      {/* Background Floating Images */}
+      <div style={styles.bgWrapper}>
+        <motion.img
+          src={stethoscope}
+          alt="stethoscope"
+          style={styles.bgImage1}
+          animate={{ y: [0, 15, 0] }}
+          transition={{ repeat: Infinity, duration: 10 }}
+        />
+        <motion.img
+          src={heart}
+          alt="heart"
+          style={styles.bgImage2}
+          animate={{ y: [0, -20, 0] }}
+          transition={{ repeat: Infinity, duration: 12 }}
+        />
+        <motion.img
+          src={syringe}
+          alt="syringe"
+          style={styles.bgImage3}
+          animate={{ y: [0, 25, 0] }}
+          transition={{ repeat: Infinity, duration: 14 }}
+        />
+      </div>
 
+      <div style={styles.container}>
+        <h2 style={styles.title}>Book Your Appointment</h2>
         <form onSubmit={handleSubmit}>
           <input type="text" placeholder="Full Name" style={styles.input} value={fullName} onChange={(e) => setFullName(e.target.value)} required />
           <input type="number" placeholder="Age" style={styles.input} value={age} onChange={(e) => setAge(e.target.value)} required />
           <input type="tel" placeholder="Mobile Number" style={styles.input} value={mobile} onChange={(e) => setMobile(e.target.value)} required />
           <input type="text" placeholder="Address" style={styles.input} value={address} onChange={(e) => setAddress(e.target.value)} />
-          
-          <select style={styles.input} value={state} onChange={(e) => setState(e.target.value)}>
+
+          <select style={styles.select} value={state} onChange={(e) => setState(e.target.value)}>
             <option value="">Select State</option>
             <option value="Andhra Pradesh">Andhra Pradesh</option>
             <option value="Telangana">Telangana</option>
@@ -110,7 +127,7 @@ function BookAppointment() {
             setAppointmentDate(`${date} ${time}`);
           }} value={appointmentDate ? appointmentDate.split(' ')[1] : ''} required />
 
-          <select style={styles.input} value={preferredDoctor} onChange={(e) => setPreferredDoctor(e.target.value)} required>
+          <select style={styles.select} value={preferredDoctor} onChange={(e) => setPreferredDoctor(e.target.value)} required>
             <option value="">Select Preferred Doctor</option>
             {doctorList.map((doc, index) => (
               <option key={index} value={doc.name}>{doc.name}</option>
@@ -119,39 +136,114 @@ function BookAppointment() {
 
           <input type="tel" placeholder="Another Relative Phone (Optional)" style={styles.input} value={relativePhone} onChange={(e) => setRelativePhone(e.target.value)} />
 
-          <button type="submit" style={styles.button}>Submit</button>
+          <motion.button
+            whileHover={{ scale: 1.05 }}
+            whileTap={{ scale: 0.95 }}
+            type="submit"
+            style={styles.button}
+          >
+            Submit
+          </motion.button>
         </form>
       </div>
-    </div>
+    </motion.div>
   );
 }
 
 const styles = {
-  input: {
-    display: 'block',
+  wrapper: {
+    minHeight: '100vh',
+    background: '#f8f9fc',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    fontFamily: "'Poppins', sans-serif",
+    padding: '2rem',
+    position: 'relative',
+    overflow: 'hidden',
+  },
+  bgWrapper: {
+    position: 'absolute',
+    top: 0,
+    left: 0,
     width: '100%',
-    margin: '1rem 0',
+    height: '100%',
+    pointerEvents: 'none',
+    zIndex: 0,
+  },
+  bgImage1: {
+    position: 'absolute',
+    top: '10%',
+    left: '5%',
+    width: '70px',
+    opacity: 0.08,
+  },
+  bgImage2: {
+    position: 'absolute',
+    top: '35%',
+    left: '80%',
+    width: '60px',
+    opacity: 0.08,
+  },
+  bgImage3: {
+    position: 'absolute',
+    top: '70%',
+    left: '25%',
+    width: '80px',
+    opacity: 0.08,
+  },
+  container: {
+    background: '#fff',
+    borderRadius: '16px',
+    padding: '2rem',
+    width: '100%',
+    maxWidth: '700px',
+    boxShadow: '0 10px 30px rgba(0,0,0,0.1)',
+    zIndex: 1,
+  },
+  title: {
+    textAlign: 'center',
+    color: '#3498DB',
+    marginBottom: '2rem',
+    fontWeight: '600',
+    fontSize: '1.75rem',
+  },
+  input: {
+    width: '100%',
+    margin: '0.8rem 0',
     padding: '0.75rem',
     border: '1px solid #ccc',
-    borderRadius: '6px',
+    borderRadius: '8px',
     fontSize: '1rem',
+    fontFamily: "'Poppins', sans-serif",
+  },
+  select: {
+    width: '100%',
+    margin: '0.8rem 0',
+    padding: '0.75rem',
+    border: '1px solid #ccc',
+    borderRadius: '8px',
+    fontSize: '1rem',
+    backgroundColor: '#fff',
+    fontFamily: "'Poppins', sans-serif",
   },
   label: {
     marginTop: '1rem',
+    fontWeight: '500',
     display: 'block',
-    fontWeight: 'bold',
     color: '#333',
   },
   button: {
-    backgroundColor: '#5DADE2',
+    backgroundColor: '#3498DB',
     color: '#fff',
     border: 'none',
-    padding: '0.75rem 1.5rem',
+    padding: '0.85rem',
     fontSize: '1rem',
     cursor: 'pointer',
-    borderRadius: '6px',
-    marginTop: '1rem',
+    borderRadius: '8px',
     width: '100%',
+    marginTop: '1.2rem',
+    transition: 'all 0.3s ease',
   },
 };
 

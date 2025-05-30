@@ -1,15 +1,34 @@
 import React from 'react';
+import { motion } from 'framer-motion';
 import cardiacImage from '../assets/cardiac-center.jpg';
-import backgroundImg from '../assets/heartkr.jpg'; // <-- Add background image
+import backgroundImg from '../assets/heartkr.jpg';
 
 function About() {
   return (
     <div style={{ ...styles.background }}>
+      <div className="animatedOverlay" />
       <div style={styles.overlay}>
         <div style={styles.container}>
-          <div style={styles.contentWrapper}>
-            <div style={styles.textContainer}>
-              <h2 style={styles.heading}>Welcome to Care Cardiac Center</h2>
+          <motion.div
+            style={styles.contentWrapper}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+          >
+            <motion.div
+              style={styles.textContainer}
+              initial={{ opacity: 0, x: -20 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.2 }}
+            >
+              <motion.h2
+                style={styles.heading}
+                initial={{ scale: 0.8 }}
+                animate={{ scale: 1 }}
+                transition={{ type: 'spring', stiffness: 100 }}
+              >
+                Welcome to Care Cardiac Center
+              </motion.h2>
               <p style={styles.text}>
                 <strong>The Legacy:</strong> Durgabhai Deshmukh Hospital was the pioneer in modern cardiac services. It has the
                 credit of performing the first open heart surgery in the combined state of Andhra Pradesh. It is also reputed
@@ -29,28 +48,40 @@ function About() {
                 The Cardiac surgery team consists of one full-time cardiac surgeon and 3 visiting cardiac surgeons with
                 expertise in pediatric, coronary, valvular, and aortic disorders.
               </p>
-            </div>
-            <img src={cardiacImage} alt="Cardiac Center" style={styles.image} />
-          </div>
+            </motion.div>
+            <motion.img
+              src={cardiacImage}
+              alt="Cardiac Center"
+              style={styles.image}
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8 }}
+            />
+          </motion.div>
         </div>
       </div>
     </div>
   );
 }
 
+// ✅ Styles
 const styles = {
   background: {
+    position: 'relative',
     backgroundImage: `url(${backgroundImg})`,
     backgroundSize: 'cover',
     backgroundPosition: 'center',
     backgroundRepeat: 'no-repeat',
     minHeight: '100vh',
     width: '100%',
+    overflow: 'hidden',
   },
   overlay: {
-    backgroundColor: 'rgba(255, 255, 255, 0.9)', // White overlay for readability
+    backgroundColor: 'rgba(255, 255, 255, 0.92)',
     minHeight: '100vh',
     padding: '2rem 0',
+    position: 'relative',
+    zIndex: 2,
   },
   container: {
     padding: '2rem',
@@ -69,8 +100,9 @@ const styles = {
   },
   heading: {
     fontSize: '2rem',
-    color: '#5DADE2',
+    color: '#EC407A',
     marginBottom: '1rem',
+    textShadow: 'Blue',
   },
   text: {
     fontSize: '1.1rem',
@@ -82,7 +114,7 @@ const styles = {
     flex: '1',
     maxWidth: '400px',
     borderRadius: '10px',
-    boxShadow: '0 4px 10px rgba(0,0,0,0.1)',
+    boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
   },
 };
 
