@@ -42,7 +42,10 @@ function BookAppointment() {
     };
 
     try {
-      const response = await axios.post('http://localhost:5000/api/appointments/book', formData);
+     const response = await axios.post(
+  `${process.env.REACT_APP_API_BASE_URL}/api/appointments/book`,
+  formData
+);
       alert(response.data.message);
       setFullName('');
       setAge('');
