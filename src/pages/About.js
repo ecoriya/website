@@ -49,13 +49,27 @@ function About() {
                 expertise in pediatric, coronary, valvular, and aortic disorders.
               </p>
             </motion.div>
+
+            {/* 🟦 Sparkle Image */}
             <motion.img
               src={cardiacImage}
               alt="Cardiac Center"
               style={styles.image}
               initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8 }}
+              animate={{
+                opacity: 1,
+                scale: 1,
+                boxShadow: [
+                  '0 0 0 rgba(0,0,0,0)',
+                  '0 0 20px rgba(173, 216, 230, 0.8)',
+                  '0 0 10px rgba(173, 216, 230, 0.4)',
+                  '0 0 0 rgba(0,0,0,0)',
+                ],
+              }}
+              transition={{
+                duration: 1.2,
+                ease: 'easeInOut',
+              }}
             />
           </motion.div>
         </div>
@@ -83,11 +97,14 @@ const styles = {
     position: 'relative',
     zIndex: 2,
   },
-  container: {
-    padding: '2rem',
-    maxWidth: '1200px',
-    margin: '0 auto',
-  },
+ container: {
+  display: 'flex',
+  alignItems: 'center',
+  justifyContent: 'space-between',
+  padding: '1rem 2rem', // ↓ Reduce this if too large
+  marginTop: '0rem',     // 👈 Ensure this is small
+},
+
   contentWrapper: {
     display: 'flex',
     gap: '2rem',
@@ -99,21 +116,21 @@ const styles = {
     minWidth: '300px',
   },
   heading: {
-    fontSize: '2rem',
-    color: '#EC407A',
+    fontSize: '3rem',
+    color: 'blue',
     marginBottom: '1rem',
-    textShadow: 'Blue',
+    textShadow: '1px 1px 2px lightblue',
   },
   text: {
-    fontSize: '1.1rem',
+    fontSize: '1.50rem',
     color: '#333',
     marginBottom: '1rem',
     lineHeight: '1.6',
   },
   image: {
-    flex: '1',
+    flex: '7',
     maxWidth: '400px',
-    borderRadius: '10px',
+    borderRadius: '5px',
     boxShadow: '0 4px 20px rgba(0,0,0,0.15)',
   },
 };

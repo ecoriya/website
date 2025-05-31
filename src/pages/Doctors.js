@@ -23,6 +23,37 @@ export const doctorList = [
     Education: "MD,(Gen),Cardiology,FACC(USA),FESC",
     specialization: "Consultant Interventional Cardiologist",
   },
+  {
+    name: "Dr. Shivrama Krishna",
+    Education: "MD,DM ",
+    specialization: "Cardiologist",
+  },
+ 
+  {
+    name: "Dr.SunainaGatham",
+    Education: "MBBS,DA,DND",
+    specialization: "Consultant Anaesthesiologist",
+  },
+  {
+    name: "Dr.K.V.Rajasekhara Rao",
+    Education: "M.CH.(CTVS)FIACS",
+    specialization: "Consultant Cardiothoracic&Vascular Surgeon",
+  },
+   {
+    name: "Dr.G.Usha Rani",
+    Education: "MS.M.CH",
+    specialization: "Senior Consultant Cardiothoracic Surgeon",
+  },
+  {
+    name: "Dr.Babu T.Muntimadugu",
+    Education: "M.CH DNB(CT)FRCS",
+    specialization: "Consultant Cardiothoracic&Vascular Surgeon",
+  },
+  {
+    name: "Dr.CH.Sai Amrut Sagar",
+    Education: "MBBS,DND(CTVS)",
+    specialization: "Cardio Thoracic Surgeon",
+  },
 ];
 
 function Doctors() {
