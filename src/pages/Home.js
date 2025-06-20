@@ -21,7 +21,7 @@ function Home() {
 
   return (
     <div>
-<div style={{ position: 'relative', overflow: 'hidden', borderRadius: '20px', height: '900px', marginBottom: '3rem' }}>
+<div style={{ position: 'relative', overflow: 'hidden', borderRadius: '5px', height: '900px', marginBottom: '3rem' }}>
 
 
         <AnimatePresence>

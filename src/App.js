@@ -1,6 +1,8 @@
 // ✅ All imports go at the top
 import { BrowserRouter as Router, Routes, Route, Link, useLocation } from 'react-router-dom';
 import { AnimatePresence, motion } from 'framer-motion';
+import logoImage from './assets/Trust Logo Sticker (1).png'; // Adjust path if needed
+
 
 import Home from './pages/Home';
 import About from './pages/About'; 
@@ -46,7 +48,9 @@ function App() {
   return (
     <Router>
       <header style={styles.navbar}>
-        <h1 style={styles.logo}>TRUST CARE</h1>
+       <img src={logoImage} alt="Trust Care Logo" style={styles.logo} />
+
+
         <nav>
           <ul style={styles.navList}>
             <li><Link to="/">Home</Link></li>
@@ -59,9 +63,7 @@ function App() {
           </ul>
         </nav>
       </header>
-
       <AnimatedRoutes />
-
       <footer style={{ 
   display: 'flex', 
   justifyContent: 'space-between', 
@@ -73,8 +75,8 @@ function App() {
   gap: '1rem'
 }}>
   <nav style={{ display: 'flex', flexDirection: 'column', alignItems: 'flex-start' }}>
-    <h4 style={{ marginBottom: '0.25rem', fontSize: '1rem' }}>Navigation</h4>
-    <ul style={{ listStyle: 'none', padding: 0, margin: 0, lineHeight: '1.4' }}>
+    <h4 style={{ marginBottom: '0', fontSize: '1rem' }}>Navigation</h4>
+    <ul style={{ listStyle: 'none', padding: 0, margin: 0, lineHeight: '1.5' }}>
       <li><Link to="/">Home</Link></li>
       <li><Link to="/doctors">Doctors</Link></li>
       <li><Link to="/services">Services</Link></li>
@@ -110,10 +112,12 @@ const styles = {
     justifyContent: 'space-between',
     alignItems: 'center',
   },
-  logo: {
-    fontSize: '1.8rem',
-    fontWeight: 'bold',
-  },
+ logo: {
+  height: '60px',
+  width: 'auto',
+  marginLeft: '1rem',
+},
+
   navList: {
     display: 'flex',
     gap: '1.5rem',

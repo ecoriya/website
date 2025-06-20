@@ -1,144 +1,75 @@
-import React, { useState } from 'react';
-import ServiceImage from '../assets/Servce.png'; 
-import cardiologyimg from '../assets/Cardiology.jpg';
+import React from 'react';
+import './service.css';
 
-const altStyles = {
-  container: {
-    maxWidth: '1100px',
-    margin: '3rem auto',
-    padding: '1.5rem',
-    backgroundColor: '#ffffff',
-    boxShadow: '0 8px 20px rgba(0, 0, 0, 0.07)',
-    borderRadius: '16px',
-    fontFamily: "'Segoe UI', Tahoma, Geneva, Verdana, sans-serif",
-    color: '#2c3e50',
-    textAlign: 'center',
-  },
-  button: {
-    backgroundColor: '#2980b9',
-    color: 'white',
-    border: 'none',
-    padding: '12px 28px',
-    fontSize: '1.125rem',
-    fontWeight: '600',
-    borderRadius: '30px',
-    cursor: 'pointer',
-    marginBottom: '2rem',
-    boxShadow: '0 4px 10px rgba(41, 128, 185, 0.4)',
-    transition: 'background-color 0.3s ease',
-  },
-  buttonHover: {
-    backgroundColor: '#1c5980',
-  },
-  textContainer: {
-    fontSize: '1.125rem',
-    lineHeight: '1.75',
-    maxWidth: '800px',
-    margin: '0 auto 3rem',
-  },
-  heading: {
-    fontSize: '2.4rem',
-    fontWeight: '700',
-    color: '#2980b9',
-    marginBottom: '1.5rem',
-    borderBottom: '3px solid #2980b9',
-    paddingBottom: '0.3rem',
-  },
-  paragraph: {
-    marginBottom: '1.4rem',
-    fontWeight: '400',
-    textAlign: 'justify',
-  },
-  strongText: {
-    color: '#34495e',
-    fontWeight: '600',
-  },
-  imageContainer: {
-    display: 'flex',
-    justifyContent: 'center',
-    gap: '2rem',
-    flexWrap: 'wrap',
-  },
-  image: {
-    width: '100%',
-    maxWidth: '400px',
-    height: 'auto',
-    borderRadius: '14px',
-    boxShadow: '0 6px 18px rgba(0, 0, 0, 0.12)',
-    objectFit: 'cover',
-    cursor: 'pointer',
-    opacity: 0,
-    transform: 'scale(0.5) rotate(-15deg)',
-    animationFillMode: 'forwards',
-  },
-  imageAnimated: {
-    animationName: 'imageOpen',
-    animationDuration: '0.8s',
-    animationTimingFunction: 'ease-out',
-  },
-};
-
-// CSS keyframe animation as a string, to inject in a style tag
-const animationStyle = `
-@keyframes imageOpen {
-  0% {
-    opacity: 0;
-    transform: scale(0.5) rotate(-15deg);
-    filter: hue-rotate(0deg);
-  }
-  50% {
-    opacity: 0.8;
-    transform: scale(1.1) rotate(10deg);
-    filter: hue-rotate(180deg);
-  }
-  100% {
-    opacity: 1;
-    transform: scale(1) rotate(0deg);
-    filter: hue-rotate(360deg);
-  }
-}
-`;
+// Import your image, adjust path accordingly
+import heartImage from '../assets/Servce.png'; // <-- put your actual image path here
 
 const Service = () => {
-  const [showImages, setShowImages] = useState(false);
-
   return (
-    <>
-      <style>{animationStyle}</style>
-      <div style={altStyles.container}>
-        <button 
-          style={altStyles.button} 
-          onClick={() => setShowImages(true)}
-          disabled={showImages}
-          aria-pressed={showImages}
-        >
-          {showImages ? "Viewing Services" : "View Services"}
-        </button>
+    <div className="service-container">
+      {/* Floating hearts */}
+      <div className="floating-heart heart1">❤️</div>
+      <div className="floating-heart heart2">💗</div>
+      <div className="floating-heart heart3">💖</div>
+      <div className="floating-heart heart4">💓</div>
+      <div className="floating-heart heart5">❤️</div>
+      <div className="floating-heart heart6">💗</div>
+      <div className="floating-heart heart7">💖</div>
+      <div className="floating-heart heart8">💓</div>
 
-        <div style={altStyles.textContainer}>
-          <h2 style={altStyles.heading}>SERVICES</h2>
-          <p style={altStyles.paragraph}>
-            <strong style={altStyles.strongText}>Unique Cardiovascular Disease Prevention and Management Programs:</strong> Special programs are being offered for patients with acute heart stroke (ACS Care program), acute and chronic heart failure (HF CareProgram), cardiac rehabilitation services (post-MI and post-cardiac surgery)(CardiacRehab Care), and Cardiovascular Disease Prevention (CVD Preventive Care). The programs are run by specially trained teams of medical, nursing, and allied (diet, exercise, behavior therapy, homecare etc) professionals. The teams offer services in pre-hospital, hospital, out-patient, and home settings on the concept of Care Continuum. The programs are professionally designed with protocols for guideline-based therapies to give best outcomes at least cost.
-          </p>
-          {/* Additional paragraphs can remain same */}
-        </div>
+      <div className="service-content">
+        <h1 className="service-title">Cardiovascular Disease Prevention and Management</h1>
 
-        {showImages && (
-          <div style={altStyles.imageContainer}>
-            <img
-              src={ServiceImage}
-              alt="Cardiology service"
-              style={{ ...altStyles.image, ...altStyles.imageAnimated }}
-            />
-            <img
-              src={cardiologyimg}
-              alt="Cardiology"
-              style={{ ...altStyles.image, ...altStyles.imageAnimated }}
-            />
+        {/* First section: left aligned with image */}
+        <section className="service-section left-aligned">
+          <div className="text-content">
+            <h2>Unique Cardiovascular Disease Prevention and Management Programs</h2>
+            <p>
+              Special programs are offered for patients with acute heart stroke (ACS Care program), acute and chronic heart failure (HF Care Program), cardiac rehabilitation services (post-MI and post-cardiac surgery) (CardiacRehab Care), and Cardiovascular Disease Prevention (CVD Preventive Care). These programs are run by specially trained teams of medical, nursing, and allied (diet, exercise, behavior therapy, homecare, etc.) professionals across pre-hospital, hospital, out-patient, and home settings under the Care Continuum concept.
+            </p>
           </div>
-        )}
+          <div className="image-content">
+            <img src={heartImage} alt="Cardiovascular Care" />
+          </div>
+        </section>
+
+        {/* Other sections */}
+        <section className="service-section">
+          <h2>Remote Intensive Care Management through e-ICCU</h2>
+          <p>
+            To provide access to expert care even in remote locations, a unique e-ICCU technology platform is used to deliver round-the-clock expert cardiac and critical care services. This service supports clinicians, ambulance networks, and hospitals during the golden hour of emergency.
+          </p>
+        </section>
+
+        <section className="service-section">
+          <h2>Culture of Learning for High Safety and Quality</h2>
+          <p>
+            The Centre provides education & training in Cardiovascular Nursing, Critical Care Nursing, Post-MBBS Fellowship in Primary Cardiology, Cardiovascular Technician training, and DNB Fellowship in Cardiology. Regular CME and CNE programs are also conducted.
+          </p>
+        </section>
+
+        <section className="service-section">
+          <h2>Focus on Research</h2>
+          <p>
+            Advanced Electronic Medical Record systems and clinical databases are used to monitor quality, safety, and cost. Registries are maintained for conditions like ACS, heart failure, anticoagulant therapy, pacemakers, ICDs, PTCA, and CABG. Original and sponsored research is undertaken.
+          </p>
+        </section>
+
+        <section className="service-section">
+          <h2>Clinical Audit Systems</h2>
+          <p>
+            Clinical audits ensure the care provided adheres to evidence-based guidelines tailored to local conditions.
+          </p>
+        </section>
+
+        <section className="service-section">
+          <h2>Affordable Services</h2>
+          <p>
+            The Centre follows trust hospital objectives to provide affordable services without compromising quality. Essential care is not refused based on affordability.
+          </p>
+        </section>
       </div>
-    </>
+    </div>
   );
 };
 
